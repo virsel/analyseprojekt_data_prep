@@ -1,3 +1,6 @@
 __pycache__
 input/price/*.csv
-input/tweet
+!input/price/AMZN.csv
+input/tweet/*
+!input/tweet/AMZN/
+
