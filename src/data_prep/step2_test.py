@@ -1,4 +1,4 @@
-from step2 import mask_tweet_text
+from data_prep.step3 import encode2tkids
 
 # Example usage and testing function
 def test_masking():
@@ -18,7 +18,7 @@ def test_masking():
     print("-" * 50)
     for test in test_cases:
         print(f"Original: {test}")
-        print(f"Masked:   {mask_tweet_text(test)}")
+        print(f"Masked:   {encode2tkids(test)}")
         print("-" * 50)
         
 test_masking()
