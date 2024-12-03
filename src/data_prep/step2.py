@@ -3,19 +3,18 @@ import os
 import re
 from pathlib import Path
 from datetime import datetime, timedelta
-from config import stock
 from ast import literal_eval
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
-step1_path = os.path.join(dir_path, f"../../output/{stock}_step1.csv")
-out_path = os.path.join(dir_path, f"../../output/{stock}_step2.csv")
+step1_path = os.path.join(dir_path, "../../output/{}_step1.csv")
+out_path = os.path.join(dir_path, "../../output/{}_step2.csv")
 
 def load_step1(step1_path):
     df = pd.read_csv(step1_path)
     df['tweets'] = df['tweets'].apply(lambda x: literal_eval(x) if pd.notna(x) else [])
     return df
 
-df = load_step1(step1_path)
+
 
 def mask_tweet_text(text):
     """
@@ -43,7 +42,7 @@ def mask_tweet_text(text):
         if any(char.isdigit() for char in stock):
             return f'${stock}'  # Return original if any digit is present
         else:
-            return f'Stock {stock.upper()}'
+            return f'{stock.upper()} stock'
     
     text = re.sub(r'\$(\w+)', stock_replacer, text)
     
@@ -77,8 +76,11 @@ def process_tweet_column(df):
     
     return df
 
-df_step2 = process_tweet_column(df)
-df_step2.to_csv(out_path, index=False)
+
+def main(stock):
+    df = load_step1(step1_path.format(stock))
+    df_step2 = process_tweet_column(df)
+    df_step2.to_csv(out_path.format(stock), index=False)
 
 
 
