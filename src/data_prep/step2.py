@@ -6,15 +6,13 @@ from datetime import datetime, timedelta
 from ast import literal_eval
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
-step1_path = os.path.join(dir_path, "../../output/{}_step1.csv")
+in_path = os.path.join(dir_path, "../../output/{}_step1.csv")
 out_path = os.path.join(dir_path, "../../output/{}_step2.csv")
 
-def load_step1(step1_path):
-    df = pd.read_csv(step1_path)
+def load(path):
+    df = pd.read_csv(path)
     df['tweets'] = df['tweets'].apply(lambda x: literal_eval(x) if pd.notna(x) else [])
     return df
-
-
 
 def mask_tweet_text(text):
     """
@@ -46,9 +44,8 @@ def mask_tweet_text(text):
     
     text = re.sub(r'\$(\w+)', stock_replacer, text)
     
-    # Remove special characters except for normal punctuation (.,!?)
-    # Also remove quotes (" or ')
-    text = re.sub(r'[^\w\s.,!?$]', '', text)
+    # # Remove special characters except for normal punctuation (.,!?) and %,$,-,+
+    # text = re.sub(r'[^\w\s.,!?$%-+&]', '', text)
     
     # Remove extra whitespace (more than one space)
     text = re.sub(r'\s+', ' ', text).strip()
@@ -78,9 +75,9 @@ def process_tweet_column(df):
 
 
 def main(stock):
-    df = load_step1(step1_path.format(stock))
-    df_step2 = process_tweet_column(df)
-    df_step2.to_csv(out_path.format(stock), index=False)
+    df = load(in_path.format(stock))
+    df2 = process_tweet_column(df)
+    df2.to_csv(out_path.format(stock), index=False)
 
 
 

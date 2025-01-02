@@ -2,14 +2,12 @@ import pandas as pd
 import os
 import json
 from pathlib import Path
-from datetime import datetime, timedelta
-
+from datetime import datetime
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 price_path = os.path.join(dir_path, "../../input/price/{}.csv")
 tweets_path = os.path.join(dir_path, "../../input/tweet/{}")
 output_path = os.path.join(dir_path, "../../output/{}_step1.csv")
-
 
 def load_prices(price_path):
     df = pd.read_csv(price_path)
@@ -63,17 +61,25 @@ def load_tweets(folder_path):
     
     return df
 
-
-
 def merge_price_tweet(df_price, df_tweet):
     # Get the min and max dates from tweet DataFrame
     min_tweet_date = df_tweet['date'].min()
     max_tweet_date = df_tweet['date'].max()
+    
+    # Get the min and max dates from tweet DataFrame
+    min_price_date = df_price['date'].min()
+    max_price_date = df_price['date'].max()
 
     # Filter price DataFrame to only include dates within the tweet date range
     df_price = df_price[
         (df_price['date'] >= min_tweet_date) & 
         (df_price['date'] <= max_tweet_date)
+    ]
+    
+    # Filter tweet DataFrame to only include dates within the price date range
+    df_tweet = df_tweet[
+        (df_tweet['date'] >= min_price_date) & 
+        (df_tweet['date'] <= max_price_date)
     ]
     
     # Create a sorted list of all price dates
@@ -117,6 +123,9 @@ def main(stock):
     df_merged = merge_price_tweet(df_price, df_tweet)
     df_merged.to_csv(output_path.format(stock), index=False)
     return df_merged
+
+if __name__ == '__main__':
+    main('BABA')
 
 
 

@@ -1,14 +1,13 @@
-from main import technic_stocks
 import os
 import pandas as pd
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 
-df_path = os.path.join(dir_path, "../../output/{}_step3.csv")
-out_path = os.path.join(dir_path, "../../output/{}_step3.csv")
+df_path = os.path.join(dir_path, "../../output/{}_step1.csv")
+out_path = os.path.join(dir_path, "../../output/{}_step1.csv")
 
 
-def merge(stocks):
+def merge(stocks, name="stocks"):
     dfs = []
     for stock in stocks:
         # Read the CSV and add a new column with the stock symbol
@@ -18,8 +17,4 @@ def merge(stocks):
     
     # Concatenate all dataframes
     df = pd.concat(dfs, ignore_index=True)
-    return df
-
-if __name__ == '__main__':
-    df = merge(['AMZN'])
-    df.to_csv(out_path.format('AMZN_mixed'), index=False)
+    df.to_csv(out_path.format(name), index=False)

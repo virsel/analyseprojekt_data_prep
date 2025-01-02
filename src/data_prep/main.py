@@ -1,15 +1,22 @@
-import step1 as s1
-import step2 as s2
-import step3 as s3
+from step1 import main as s1
+from step2 import main as s2
+from merge import merge
+from step3 import main as s3
+from step4 import main as s4
 
-technic_stocks = ['AAPL', 'AMZN', 'MSFT', 'CSCO', 'GOOG', 'FB']
-mixed_stocks = ['AMZN', 'JNJ', 'AEP', 'HSBC', 'NGG', 'BA']
+stocks = ['BABA', 'ORCL', 'INTC', 'TSM', 'AAPL', 'AMZN', 'MSFT', 'CSCO', 'GOOG', 'FB']
 
 def main():
-    for s in technic_stocks:
-        s1.main(s)
-        s2.main(s)
-        s3.main(s)
+    # for stock in stocks:
+    #     s1(stock)
+        
+    merge_name = 'stocks'
+    # merge(stocks, merge_name)
+    
+    # s2(merge_name)
+    # s3(merge_name)
+    s4(merge_name)
+    
     
 if __name__ == '__main__':
     main()

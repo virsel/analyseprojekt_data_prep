@@ -1,26 +1,17 @@
-## Domain testing  
-technisch:
-- AAPL, AMZN, MSFT, CSCO, GOOG, FB
-
-Mix:
-- AMZN, JNJ, AEP, HSBC, NGG, BA
-
-
+ 
 ### Stock Portfolio Domain Categorization
 
 #### Technology
 - **AAPL (Apple Inc.)**: Consumer electronics, software, and services
 - **AMZN (Amazon.com Inc.)**: E-commerce, cloud computing, digital streaming
-- **CHTR (Charter Communications)**: Cable telecommunications
-- **CMCSA (Comcast Corporation)**: Media, telecommunications, entertainment
 - **CSCO (Cisco Systems)**: Networking hardware, software, telecommunications
 - **FB/META (Meta Platforms)**: Social media, digital platforms
 - **GOOG (Alphabet Inc.)**: Internet services, cloud computing, AI
 - **INTC (Intel Corporation)**: Semiconductor manufacturing
-- **MA (Mastercard)**: Digital payment technologies
 - **MSFT (Microsoft Corporation)**: Software, cloud computing, hardware
 - **ORCL (Oracle Corporation)**: Enterprise software, cloud engineering
-- **V (Visa Inc.)**: Global digital payments network
+- BABA (Alibaba Group)
+- TSM (Taiwan Semiconductor Manufacturing)
 
 #### Healthcare/Pharmaceuticals
 - **ABBV (AbbVie Inc.)**: Biopharmaceuticals
